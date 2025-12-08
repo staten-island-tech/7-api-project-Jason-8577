@@ -16,22 +16,9 @@ def getPoke(poke):
 
 pokemon = getPoke("Charizard")
 for key, value in pokemon.items():
-    print(f"{key.title()}: {value}")"""
-
-
-import requests
-
-def info(search):
-    response = requests.get(f"https://www.dnd5eapi.co/api/2014/{search.lower()}")
-    if response.status_code != 400:
-        print("Error fetching data!")
-        return None
+    print(f"{key.title()}: {value}") """
     
-    data = response.json()
-    return{
-        "name": data["name"]
-    }
-dnd = info("acid arrow")
-for key, value in dnd.items():
-    print(f"{key.title()}: {value}")
-    
+
+
+
+https://opentdb.com/api_config.php
