@@ -29,7 +29,7 @@ def getfeature(features):
     data = response.json()
     return data
 
-cs = getfeature("action-surge-2-uses")
+cs = getfeature("additional-fighting-style")
 for key, value in cs.items():
     print(f"{key.title()}: {value}")
 
