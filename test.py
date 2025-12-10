@@ -1,6 +1,4 @@
-""" https://opentdb.com/api_config.php """
-
-import requests
+""" import requests
 
 def getPoke(poke):
     response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{poke.lower()}")
@@ -18,20 +16,22 @@ def getPoke(poke):
 
 pokemon = getPoke("Charizard")
 for key, value in pokemon.items():
-    print(f"{key.title()}: {value}")
+    print(f"{key.title()}: {value}") """
     
-
 import requests
 
-def trivia_questions(questions):
-    response = requests.get(f"https://opentdb.com/api.php?amount=10&category=15&type=multiple{questions.lower()}") 
+def getfeature(features):
+    response = requests.get(f"https://www.dnd5eapi.co/api/2014/features/{features.lower()}")
     if response.status_code != 200:
-        print("Error fetching data!")
+        print("Error: incorrect input.")
         return None
-        
+    
     data = response.json()
     return data
-    
-trivia = trivia_questions("easy")
-print(trivia)
-    
+
+cs = getfeature("action-surge-2-uses")
+for key, value in cs.items():
+    print(f"{key.title()}: {value}")
+
+
+"""     https://www.dnd5eapi.co/ """
