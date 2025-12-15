@@ -19,7 +19,7 @@ for key, value in pokemon.items():
     print(f"{key.title()}: {value}") """
 
 
-import requests
+""" import requests
 
 def getclass(Class):
     response = requests.get(f"https://www.dnd5eapi.co/api/2014/classes/{Class.lower()}")
@@ -63,4 +63,4 @@ padx = 10, pady = 5
 )
 
 my_button.pack(pady=20)
-window.mainloop()
+window.mainloop() """
