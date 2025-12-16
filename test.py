@@ -1,26 +1,5 @@
 """ import requests
 
-def getPoke(poke):
-    response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{poke.lower()}")
-    if response.status_code != 200:
-        print("Error fetching data!")
-        return None
-    
-    data = response.json()
-    return {
-        "name": data["name"],
-        "height": data["height"],
-        "weight": data["weight"],
-        "types": [t["type"]["name"] for t in data["types"]]
-    }
-
-pokemon = getPoke("Charizard")
-for key, value in pokemon.items():
-    print(f"{key.title()}: {value}") """
-
-
-""" import requests
-
 def getclass(Class):
     response = requests.get(f"https://www.dnd5eapi.co/api/2014/classes/{Class.lower()}")
     if response.status_code != 200:
@@ -46,7 +25,7 @@ W = getclass("Wizard")
 import tkinter as tk
 
 def imports():
-    for key, value in W.items():              #Change the () or letter according to class {for key, value in ().items():}
+    for key, value in W.items():
         print(f"{key.title()}: {value}")
 
 window = tk.Tk()
@@ -63,5 +42,47 @@ padx = 10, pady = 5
 )
 
 my_button.pack(pady=20)
-window.mainloop() """
+window.mainloop()  """
 
+
+import requests
+
+def getclass(Class):
+    response = requests.get(f"https://www.dnd5eapi.co/api/2014/classes/{Class.lower()}")
+    if response.status_code != 200:
+        print("Error")
+        return None
+    
+    data = response.json()
+    return data
+
+import tkinter as tk
+
+window = tk.Tk()
+window.title("Message Reverser")
+window.geometry("400x250") 
+window.resizable(False, False) 
+prompt = tk.Label(window, text="Type your message below:",
+font=("Arial", 14))
+prompt.pack(pady=10) 
+
+entry = tk.Entry(window, font=("Arial", 14), width=30)
+entry.pack(pady=5)
+
+result_label = tk.Label(window, text="", font=("Arial", 14, "bold"),
+fg="blue")
+result_label.pack(pady=15)
+
+def Class_dnd():
+    text = entry.get()
+    character = text 
+    Character = getclass(f"{text}")
+    for key, value in text.items():
+        print(f"{key.title}: {value}")
+
+Class_def = tk.Button(window, text = "Class_def",
+font = ("Arial", 14),
+
+command = Class_dnd)
+Class_def.pack(pady = 10)
+window.mainloop()
