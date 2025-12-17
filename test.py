@@ -56,13 +56,15 @@ def getclass(Class):
     data = response.json()
     return data
 
+print("Click on Description to get the names of all classes.")
+
 import tkinter as tk
 
 window = tk.Tk()
-window.title("Message Reverser")
+window.title("DND")
 window.geometry("400x250") 
 window.resizable(False, False) 
-prompt = tk.Label(window, text="Type your message below:",
+prompt = tk.Label(window, text="Input a Class below:",
 font=("Arial", 14))
 prompt.pack(pady=10) 
 
@@ -74,12 +76,11 @@ fg="blue")
 result_label.pack(pady=15)
 
 def Class_dnd():
-    text = entry.get()
-    
-    for key, value in text.items():
+    dnd = getclass(f"{entry.get()}")
+    for key, value in dnd.items():
         print(f"{key.title}: {value}")
 
-Class_def = tk.Button(window, text = "Class_def",
+Class_def = tk.Button(window, text = "Description",
 font = ("Arial", 14),
 
 command = Class_dnd)
