@@ -75,8 +75,7 @@ result_label.pack(pady=15)
 
 def Class_dnd():
     text = entry.get()
-    character = text 
-    Character = getclass(f"{text}")
+    
     for key, value in text.items():
         print(f"{key.title}: {value}")
 
