@@ -3,100 +3,6 @@
 def getclass(Class):
     response = requests.get(f"https://www.dnd5eapi.co/api/2014/classes/{Class.lower()}")
     if response.status_code != 200:
-        print("Error")
-        return None
-    
-    data = response.json()
-    return data
-
-b = getclass("Barbarian")
-B = getclass("Bard")
-c = getclass("Cleric")
-d = getclass("Druid")
-f = getclass("Fighter")
-m = getclass("Monk")
-p = getclass("Paladin")
-r = getclass("Ranger")
-R = getclass("Rogue")
-s = getclass("Sorcerer")
-w = getclass("Warlock")
-W = getclass("Wizard")
-
-import tkinter as tk
-
-def imports():
-    for key, value in W.items():
-        print(f"{key.title()}: {value}")
-
-window = tk.Tk()
-window.title("Dnd")
-my_button = tk.Button(
-window, 
-text = "Class imports",
-command = imports,
-font = ("Arial", 16),
-bg = "darkblue",
-fg = "white",
-relief = "raised",
-padx = 10, pady = 5
-)
-
-my_button.pack(pady=20)
-window.mainloop()  """
-
-
-
-
-""" import requests
-
-def getclass(Class):
-    response = requests.get(f"https://www.dnd5eapi.co/api/2014/classes/{Class.lower()}")
-    if response.status_code != 200:
-        print("Error")
-        return None
-    
-    data = response.json()
-    return data
-
-print("Click on Description to get the names of all classes.")
-
-import tkinter as tk
-
-window = tk.Tk()
-window.title("DND")
-window.geometry("400x250") 
-window.resizable(False, False) 
-prompt = tk.Label(window, text="Input a Class below:",
-font=("Arial", 14))
-prompt.pack(pady=10) 
-
-entry = tk.Entry(window, font=("Arial", 14), width=30)
-entry.pack(pady=5)
-
-result_label = tk.Label(window, text="", font=("Arial", 14, "bold"),
-fg="blue")
-result_label.pack(pady=15)
-
-def Class_dnd():
-    dnd = getclass(f"{entry.get()}")
-    for key, value in dnd.items():
-        print(f"{key.title}: {value}")
-
-Class_def = tk.Button(window, text = "Description",
-font = ("Arial", 14),
-
-command = Class_dnd)
-Class_def.pack(pady = 10)
-window.mainloop() """
-
-
-
-
-import requests
-
-def getclass(Class):
-    response = requests.get(f"https://www.dnd5eapi.co/api/2014/classes/{Class.lower()}")
-    if response.status_code != 200:
         return None
     
     data = response.json()
@@ -124,16 +30,98 @@ entry.pack(pady=5)
 result_frame = tk.Frame(window)
 result_frame.pack(pady=15)
 
+result_label = tk.Label(
+    result_frame,
+    text="",
+    font=("Arial", 11),
+    justify="left",
+    wraplength=420
+)
+result_label.pack()
+
 def show_class():
     dnd = getclass(entry.get())
 
     if not dnd:
-        return "Class Not Found!"
-    
+        result_label.config(text="Class Not Found!")    
+        return
+
+    text = ""
     for key, value in dnd.items():
-        print(f"{key.title()}: {value}")
+        text += f"{key.title()}: {value}\n\n"
+
+    result_label.config(text=text)
     
 btn = tk.Button(window, text="Show Class Info", font=("Arial", 14), command=show_class)
 btn.pack(pady=10)
+
+window.mainloop() """
+
+
+
+import requests
+import tkinter as tk
+
+def getclass(Class):
+    response = requests.get(f"https://www.dnd5eapi.co/api/2014/classes/{Class.lower()}")
+    if response.status_code != 200:
+        return None
+    
+    data = response.json()
+    return {
+        "name": data["name"],
+        "hit_die": data["hit_die"],
+        "subclasses": data["subclasses"],
+        "starting_equipment": data["starting_equipment"],
+        "proficiencies": data["proficiencies"],
+    }
+
+window = tk.Tk()
+window.title("DND Class Information")
+window.geometry("450x600")
+window.resizable(False, False)
+
+prompt = tk.Label(window, text="Input a DND class:", font=("Arial", 14))
+prompt.pack(pady=10)
+
+entry = tk.Entry(window, font=("Arial", 14), width=25)
+entry.pack(pady=5)
+
+result_frame = tk.Frame(window)
+result_frame.pack(pady=15, fill="both", expand=True)
+
+scrollbar = tk.Scrollbar(result_frame)
+scrollbar.pack(side="right", fill="y")
+
+result_text = tk.Text(
+    result_frame,
+    font=("Arial", 11),
+    wrap="word",
+    yscrollcommand=scrollbar.set
+)
+result_text.pack(side="left", fill="both", expand=True)
+
+scrollbar.config(command=result_text.yview)
+
+def show_class():
+    dnd = getclass(entry.get())
+    result_text.delete("1.0", tk.END) 
+
+    if not dnd:
+        result_text.insert(tk.END, "Class Not Found!")
+        return
+
+    text = ""
+    for key, value in dnd.items():
+        text += f"{key.title()}: {value}\n\n"
+
+    result_text.insert(tk.END, text)
+    
+reverse_button = tk.Button(window, text="DND Class Information",
+font=("Arial", 14),
+
+command=show_class)
+
+reverse_button.pack(pady=15)
 
 window.mainloop()
