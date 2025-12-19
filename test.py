@@ -108,9 +108,9 @@ def show_class():
     result_text.delete("1.0", tk.END) 
 
     if not dnd:
-        result_text.insert(tk.END, "Class Not Found!")
-        return
-
+         result_text.insert(tk.END, "Class Not Found!")
+         return
+    
     text = ""
     for key, value in dnd.items():
         text += f"{key.title()}: {value}\n\n"
