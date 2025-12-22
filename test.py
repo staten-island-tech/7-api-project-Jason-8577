@@ -12,6 +12,7 @@ def getclass(Class):
         "subclasses": data["subclasses"],
         "starting_equipment": data["starting_equipment"],
         "proficiencies": data["proficiencies"],
+        "proficiency_choices": data["proficiency_choices"]
     }
 
 import tkinter as tk 
