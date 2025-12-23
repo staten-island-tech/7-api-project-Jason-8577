@@ -58,11 +58,11 @@ def show_class():
 
     result_text.insert(tk.END, text)
     
-reverse_button = tk.Button(window, text="DND Class Information",
+Class_button = tk.Button(window, text="DND Class Information",
 font=("Arial", 14),
 
 command=show_class)
 
-reverse_button.pack(pady=15)
+Class_button.pack(pady=15)
 
 window.mainloop()
